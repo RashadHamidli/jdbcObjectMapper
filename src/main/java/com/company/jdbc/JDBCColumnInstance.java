@@ -14,3 +14,4 @@ import java.lang.annotation.Target;
 public @interface JDBCColumnInstance {
     public JDBCTableMapping[] table();
 }
+
