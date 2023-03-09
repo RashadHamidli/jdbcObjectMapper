@@ -1,0 +1,532 @@
+Index: .idea/jarRepositories.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/jarRepositories.xml b/.idea/jarRepositories.xml
+new file mode 100644
+--- /dev/null	(date 1678369701680)
++++ b/.idea/jarRepositories.xml	(date 1678369701680)
+@@ -0,0 +1,20 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="RemoteRepositoriesConfiguration">
++    <remote-repository>
++      <option name="id" value="central" />
++      <option name="name" value="Central Repository" />
++      <option name="url" value="https://repo.maven.apache.org/maven2" />
++    </remote-repository>
++    <remote-repository>
++      <option name="id" value="central" />
++      <option name="name" value="Maven Central repository" />
++      <option name="url" value="https://repo1.maven.org/maven2" />
++    </remote-repository>
++    <remote-repository>
++      <option name="id" value="jboss.community" />
++      <option name="name" value="JBoss Community repository" />
++      <option name="url" value="https://repository.jboss.org/nexus/content/repositories/public/" />
++    </remote-repository>
++  </component>
++</project>
+\ No newline at end of file
+Index: pom.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/pom.xml b/pom.xml
+new file mode 100644
+--- /dev/null	(date 1678370427381)
++++ b/pom.xml	(date 1678370427381)
+@@ -0,0 +1,44 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project xmlns="http://maven.apache.org/POM/4.0.0"
++         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
++         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
++    <modelVersion>4.0.0</modelVersion>
++
++    <groupId>com.company</groupId>
++    <artifactId>jdbcObjectMapper</artifactId>
++    <version>1.0-SNAPSHOT</version>
++
++    <properties>
++        <maven.compiler.source>19</maven.compiler.source>
++        <maven.compiler.target>19</maven.compiler.target>
++        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
++    </properties>
++    <dependencies>
++        <dependency>
++            <groupId>org.projectlombok</groupId>
++            <artifactId>lombok</artifactId>
++            <version>1.18.24</version>
++        </dependency>
++        <dependency>
++            <groupId>org.apache.maven.surefire</groupId>
++            <artifactId>surefire-booter</artifactId>
++            <version>2.22.1</version>
++        </dependency>
++        <dependency>
++            <groupId>org.apache.commons</groupId>
++            <artifactId>commons-lang3</artifactId>
++            <version>3.12.0</version>
++        </dependency>
++        <dependency>
++            <groupId>commons-beanutils</groupId>
++            <artifactId>commons-beanutils</artifactId>
++            <version>1.7.0</version>
++        </dependency>
++        <dependency>
++            <groupId>commons-beanutils</groupId>
++            <artifactId>commons-beanutils</artifactId>
++            <version>1.7.0</version>
++        </dependency>
++    </dependencies>
++
++</project>
+\ No newline at end of file
+Index: .idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/vcs.xml b/.idea/vcs.xml
+new file mode 100644
+--- /dev/null	(date 1678371049240)
++++ b/.idea/vcs.xml	(date 1678371049240)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="VcsDirectoryMappings">
++    <mapping directory="$PROJECT_DIR$" vcs="Git" />
++  </component>
++</project>
+\ No newline at end of file
+Index: src/main/java/com/company/jdbc/JDBCColumn.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/company/jdbc/JDBCColumn.java b/src/main/java/com/company/jdbc/JDBCColumn.java
+new file mode 100644
+--- /dev/null	(date 1678370407543)
++++ b/src/main/java/com/company/jdbc/JDBCColumn.java	(date 1678370407543)
+@@ -0,0 +1,16 @@
++package com.company.jdbc;
++
++import java.lang.annotation.ElementType;
++import java.lang.annotation.Retention;
++import java.lang.annotation.RetentionPolicy;
++import java.lang.annotation.Target;
++
++/**
++ *
++ * @author mr_rashad
++ */
++@Target(value = {ElementType.METHOD, ElementType.FIELD})
++@Retention(value = RetentionPolicy.RUNTIME)
++public @interface JDBCColumn {
++    public String name() default "";
++}
+Index: src/main/java/com/company/jdbc/JDBCColumnInstance.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/company/jdbc/JDBCColumnInstance.java b/src/main/java/com/company/jdbc/JDBCColumnInstance.java
+new file mode 100644
+--- /dev/null	(date 1678370239449)
++++ b/src/main/java/com/company/jdbc/JDBCColumnInstance.java	(date 1678370239449)
+@@ -0,0 +1,16 @@
++package com.company.jdbc;
++
++import java.lang.annotation.ElementType;
++import java.lang.annotation.Retention;
++import java.lang.annotation.RetentionPolicy;
++import java.lang.annotation.Target;
++
++/**
++ *
++ * @author mr_rashad
++ */
++@Target(value = {ElementType.METHOD, ElementType.FIELD})
++@Retention(value = RetentionPolicy.RUNTIME)
++public @interface JDBCColumnInstance {
++    public JDBCTableMapping[] table();
++}
+Index: src/main/java/com/company/jdbc/JDBCEntity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/company/jdbc/JDBCEntity.java b/src/main/java/com/company/jdbc/JDBCEntity.java
+new file mode 100644
+--- /dev/null	(date 1678370193144)
++++ b/src/main/java/com/company/jdbc/JDBCEntity.java	(date 1678370193144)
+@@ -0,0 +1,18 @@
++package com.company.jdbc;
++
++import java.lang.annotation.Documented;
++import java.lang.annotation.ElementType;
++import java.lang.annotation.Retention;
++import java.lang.annotation.RetentionPolicy;
++import java.lang.annotation.Target;
++
++/**
++ *
++ * @author mr_rashad
++ */
++@Documented
++@Target(value = {ElementType.TYPE})
++@Retention(value = RetentionPolicy.RUNTIME)
++public @interface JDBCEntity {
++
++}
+Index: src/main/java/com/company/jdbc/JDBCTableMapping.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/company/jdbc/JDBCTableMapping.java b/src/main/java/com/company/jdbc/JDBCTableMapping.java
+new file mode 100644
+--- /dev/null	(date 1678370222488)
++++ b/src/main/java/com/company/jdbc/JDBCTableMapping.java	(date 1678370222488)
+@@ -0,0 +1,6 @@
++package com.company.jdbc;
++
++public @interface JDBCTableMapping {
++    public String varName();
++    public String columnName();
++}
+Index: src/main/java/com/company/usage/User.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/company/usage/User.java b/src/main/java/com/company/usage/User.java
+new file mode 100644
+--- /dev/null	(date 1678370407514)
++++ b/src/main/java/com/company/usage/User.java	(date 1678370407514)
+@@ -0,0 +1,17 @@
++package com.company.usage;
++
++
++import lombok.Data;
++
++/**
++ *
++ * @author mr_rashad
++ */
++@Data
++public class User {
++
++    private int id;
++    private String name;
++    private String surname;
++    private Company company;
++}
+\ No newline at end of file
+Index: src/main/java/com/company/jdbc/utils/ResultSetMapper.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/company/jdbc/utils/ResultSetMapper.java b/src/main/java/com/company/jdbc/utils/ResultSetMapper.java
+new file mode 100644
+--- /dev/null	(date 1678370301155)
++++ b/src/main/java/com/company/jdbc/utils/ResultSetMapper.java	(date 1678370301155)
+@@ -0,0 +1,130 @@
++package com.company.jdbc.utils;
++
++import java.lang.annotation.Annotation;
++import java.lang.reflect.Field;
++import java.sql.ResultSet;
++import java.util.ArrayList;
++import java.util.List;
++import org.apache.commons.beanutils.BeanUtils;
++import org.apache.commons.lang3.StringUtils;
++import com.company.jdbc.JDBCColumn;
++import com.company.jdbc.JDBCColumnInstance;
++import com.company.jdbc.JDBCEntity;
++import com.company.jdbc.JDBCTableMapping;
++
++public class ResultSetMapper {
++
++    public static <T> List<T> mapRersultSetToList(ResultSet rs, Class<T> outputClass) {
++        if (rs == null) {
++            return null;
++        }
++        List<T> outputList = new ArrayList<T>();
++        try {
++            // make sure resultset is not null
++            while (rs.next()) {
++                System.out.println("step 0");
++                // check if outputClass has 'Entity' annotation
++                if (outputClass.isAnnotationPresent(JDBCEntity.class)) {
++                    System.out.println("step 1");
++                    T bean = (T) outputClass.newInstance();
++                    // get the resultset metadata
++                    Field[] fields = outputClass.getDeclaredFields();
++                    System.out.println("fields size=" + fields.length);
++                    for (int i = 0; i < fields.length; i++) {
++                        Field field = fields[i];
++
++                        JDBCColumn nColumn = getAnnotation(field, JDBCColumn.class);
++
++                        if (nColumn != null) {
++                            caseNColumn(nColumn, bean, field, rs);
++                        } else {
++                            JDBCColumnInstance nColumnInstance = getAnnotation(field, JDBCColumnInstance.class);
++                            if (nColumnInstance != null) {
++                                caseNColumnInstance(nColumnInstance, bean, field, rs);
++                            }
++                        }
++                    }
++                    outputList.add(bean);
++                }
++            }
++        } catch (Exception ex) {
++            ex.printStackTrace();
++        }
++
++        return outputList;
++    }
++
++    public static <T> T mapRersultSetToObject(ResultSet rs, Class<T> outputClass) {
++        List<T> list = mapRersultSetToList(rs, outputClass);
++        if(list!=null && list.size()>0){
++            return list.get(0);
++        }
++        return null;
++    }
++    private static <T> T getAnnotation(Field field, Class clazz) {
++        Annotation[] anns = field.getAnnotationsByType(clazz);
++        if (anns != null && anns.length > 0) {
++            return (T) anns[0];
++        }
++
++        return null;
++    }
++
++    private static <T> void caseNColumn(JDBCColumn nColumn, T bean, Field field, ResultSet rs) throws Exception {
++        Object columnValue = rs.getObject(nColumn.name());
++        BeanUtils.setProperty(bean, field.getName(), columnValue);
++    }
++
++    private static <T> void caseNColumnInstance(JDBCColumnInstance nColumnInstance, T bean, Field currentField, ResultSet rs) throws Exception {
++        JDBCTableMapping[] tbs = nColumnInstance.table();
++        if (tbs == null || tbs.length == 0) {
++            return;
++        }
++        Object currentObject = currentField.getType().newInstance();
++        BeanUtils.setProperty(bean, currentField.getName(), currentObject);
++        System.out.println("current class name=" + currentObject.getClass().getName());
++        System.out.println("current field name=" + currentField.getName());
++        for (int i = 0; i < tbs.length; i++) {
++            System.out.println("---------------------------");
++            System.out.println("annotation variables processing began");
++            System.out.println("---------------------------");
++
++            JDBCTableMapping tb = tbs[i];
++            if (StringUtils.isBlank(tb.varName())) {
++                continue;
++            }
++            String[] variableNames = tb.varName().split("\\.");
++            if (variableNames == null || variableNames.length == 0) {
++                continue;
++            }
++            Object value = rs.getObject(tb.columnName());
++            System.out.println("db_value=" + value);
++            if (variableNames.length == 1) {
++                String varName = variableNames[0];
++                System.out.println("1.varname=" + varName);
++                BeanUtils.setProperty(currentObject, varName, value);
++                continue;
++            }
++
++            Object internalObject = null;
++            for (int j = 0; j < variableNames.length; j++) {
++                String varName = variableNames[j];
++                System.out.println((j + 1) + ".varname=" + varName);
++                if (j == variableNames.length - 1) {
++                    BeanUtils.setProperty(internalObject, varName, value);
++                } else {
++                    if (j == 0) {
++                        internalObject = currentObject.getClass().getDeclaredField(varName).getType().newInstance();
++                    } else {
++                        internalObject = internalObject.getClass().getDeclaredField(varName).getType().newInstance();
++                    }
++                    BeanUtils.setProperty(currentObject, varName, internalObject);
++                    currentObject = internalObject;
++                    System.out.println("class name=" + internalObject.getClass().getName());
++                }
++            }
++        }
++
++    }
++
++}
+Index: src/main/java/com/company/usage/Main.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/company/usage/Main.java b/src/main/java/com/company/usage/Main.java
+new file mode 100644
+--- /dev/null	(date 1678370407525)
++++ b/src/main/java/com/company/usage/Main.java	(date 1678370407525)
+@@ -0,0 +1,28 @@
++package com.company.usage;
++
++import com.company.jdbc.utils.ResultSetMapper;
++
++import java.sql.ResultSet;
++import java.util.List;
++
++public class Main {
++    public static void main(String[] args) {
++        /*
++        Assume that our ResultSet represent such columns.
++        These columns selected from some joins of tables(payment,user,company) and these columns are in one query result:
++        id,payment_date,payment_amount, user_id,user_name, user_surname, company_id, company_name
++
++        and we need to map these columns to Payment object.
++        By default we need to do:
++        Payment payment = new Payment();
++        payment.setId(rs.getInt("payment_id");
++        ... etc.
++        */
++
++        ResultSet rs = null;//your result set comes from jdbc query
++
++        List<Payment> payments = ResultSetMapper.mapRersultSetToList(rs, Payment.class);// if it is not list use mapRersultSetToObject
++
++        //please check inside of Payment class.
++    }
++}
+Index: src/main/java/com/company/usage/Payment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/company/usage/Payment.java b/src/main/java/com/company/usage/Payment.java
+new file mode 100644
+--- /dev/null	(date 1678370019823)
++++ b/src/main/java/com/company/usage/Payment.java	(date 1678370019823)
+@@ -0,0 +1,31 @@
++package com.company.usage;
++
++import lombok.Data;
++import com.company.jdbc.JDBCColumn;
++import com.company.jdbc.JDBCColumnInstance;
++import com.company.jdbc.JDBCEntity;
++import com.company.jdbc.JDBCTableMapping;
++
++@Data
++@JDBCEntity
++public class Payment {
++
++    @JDBCColumn(name = "id")
++    private Long id;
++
++    @JDBCColumn(name = "payment_date")
++    private String date;
++
++    @JDBCColumn(name = "payment_amount")
++    private Double amount;
++
++    @JDBCColumnInstance(table = {
++            @JDBCTableMapping(varName = "id", columnName = "user_id"),
++            @JDBCTableMapping(varName = "name", columnName = "user_name"),
++            @JDBCTableMapping(varName = "surname", columnName = "user_surname"),
++            @JDBCTableMapping(varName = "company.id", columnName = "company_id"),
++            @JDBCTableMapping(varName = "company.name", columnName = "company_name")
++    })
++    private User user;
++
++}
+Index: .idea/encodings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/encodings.xml b/.idea/encodings.xml
+new file mode 100644
+--- /dev/null	(date 1678369701656)
++++ b/.idea/encodings.xml	(date 1678369701656)
+@@ -0,0 +1,7 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="Encoding">
++    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
++    <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/compiler.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/compiler.xml b/.idea/compiler.xml
+new file mode 100644
+--- /dev/null	(date 1678370551604)
++++ b/.idea/compiler.xml	(date 1678370551604)
+@@ -0,0 +1,14 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="CompilerConfiguration">
++    <annotationProcessing>
++      <profile default="true" name="Default" enabled="true" />
++      <profile name="Maven default annotation processors profile" enabled="true">
++        <sourceOutputDir name="target/generated-sources/annotations" />
++        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
++        <outputRelativeToContentRoot value="true" />
++        <module name="jdbcObjectMapper" />
++      </profile>
++    </annotationProcessing>
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+new file mode 100644
+--- /dev/null	(date 1678369676963)
++++ b/.idea/misc.xml	(date 1678369676963)
+@@ -0,0 +1,14 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="ExternalStorageConfigurationManager" enabled="true" />
++  <component name="MavenProjectsManager">
++    <option name="originalFiles">
++      <list>
++        <option value="$PROJECT_DIR$/pom.xml" />
++      </list>
++    </option>
++  </component>
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_19" default="true" project-jdk-name="19" project-jdk-type="JavaSDK">
++    <output url="file://$PROJECT_DIR$/out" />
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/.gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/.gitignore b/.idea/.gitignore
+new file mode 100644
+--- /dev/null	(date 1678369681219)
++++ b/.idea/.gitignore	(date 1678369681219)
+@@ -0,0 +1,8 @@
++# Default ignored files
++/shelf/
++/workspace.xml
++# Editor-based HTTP Client requests
++/httpRequests/
++# Datasource local storage ignored files
++/dataSources/
++/dataSources.local.xml
