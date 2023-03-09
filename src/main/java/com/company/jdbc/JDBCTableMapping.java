@@ -4,3 +4,4 @@ public @interface JDBCTableMapping {
     public String varName();
     public String columnName();
 }
+
