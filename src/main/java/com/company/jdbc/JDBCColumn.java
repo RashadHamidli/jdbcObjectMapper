@@ -14,3 +14,5 @@ import java.lang.annotation.Target;
 public @interface JDBCColumn {
     public String name() default "";
 }
+
+
