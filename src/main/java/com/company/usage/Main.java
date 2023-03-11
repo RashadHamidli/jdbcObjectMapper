@@ -18,11 +18,8 @@ public class Main {
         payment.setId(rs.getInt("payment_id");
         ... etc.
         */
-
         ResultSet rs = null;//your result set comes from jdbc query
-
         List<Payment> payments = ResultSetMapper.mapRersultSetToList(rs, Payment.class);// if it is not list use mapRersultSetToObject
-
         //please check inside of Payment class.
     }
 }
