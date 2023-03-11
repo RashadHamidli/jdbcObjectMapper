@@ -9,7 +9,6 @@ import com.company.jdbc.JDBCTableMapping;
 @Data
 @JDBCEntity
 public class Payment {
-
     @JDBCColumn(name = "id")
     private Long id;
 
