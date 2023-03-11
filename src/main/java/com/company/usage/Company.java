@@ -1,5 +1,4 @@
 package com.company.usage;
-
 import lombok.Data;
 
 /**
