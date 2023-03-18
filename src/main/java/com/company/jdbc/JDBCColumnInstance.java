@@ -8,6 +8,7 @@ import java.lang.annotation.Target;
  *
  * @author mr_rashad
  */
+
 @Target(value = {ElementType.METHOD, ElementType.FIELD})
 @Retention(value = RetentionPolicy.RUNTIME)
 public @interface JDBCColumnInstance {
