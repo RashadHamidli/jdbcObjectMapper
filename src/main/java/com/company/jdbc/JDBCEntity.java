@@ -10,7 +10,6 @@ import java.lang.annotation.Target;
  *
  * @author mr_rashad
  */
-
 @Documented
 @Target(value = {ElementType.TYPE})
 @Retention(value = RetentionPolicy.RUNTIME)
